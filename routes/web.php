@@ -22,5 +22,5 @@ Route::get('/greeting', function () {
 });
 
 Route::get('/planets', function () {
-    return ["Uranus", "Jupiter", "Mars", "Aarde", "Saturnus", "Pluto", "Neptunus", "Venus"];
+    return ["Uranus", "Jupiter", "Mars", "Aarde", "Saturnus", "Pluto", "Neptunus", "Venus"]; 
 });
