@@ -21,6 +21,7 @@ Route::get('/greeting', function () {
     return 'Hello World';
 });
 
-Route::get('/planets', function () {
+Route::get('/planet', function () {
     return ["Uranus", "Jupiter", "Mars", "Aarde", "Saturnus", "Pluto", "Neptunus", "Venus"];
 });
+
