@@ -21,11 +21,11 @@ Route::get('/greeting', function () {
     return 'Hello World';
 });
 
-Route::get('/planet', function () {
+/*Route::get('/planet', function () {
     return ["Uranus", "Jupiter", "Mars", "Aarde", "Saturnus", "Pluto", "Neptunus", "Venus"];
-});
+});*/
 
-Route::get('/planets', function () {
+Route::get('/planets/{planet?}', function ($planet = null) {
     $planets = [
         [
             'name' => 'Mars',
@@ -45,6 +45,18 @@ Route::get('/planets', function () {
         ],
     ];
 
-    return view('planets', compact('planets'));
+    // Filter the planets array if a planet is specified
+    if ($planet) {
+        $planets = collect($planets)->filter(function ($p) use ($planet) {
+            return strtolower($p['name']) == strtolower($planet);
+        })->values()->all();
+    }
+
+    // Debugging information to check contents of $planets
+    if (empty($planets)) {
+        dd('No planets found', $planets, $planet);
+    }
+
+    return view('planets', compact('planets', 'planet' ));
 });
 
