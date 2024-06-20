@@ -25,7 +25,7 @@ Route::get('/greeting', function () {
     return ["Uranus", "Jupiter", "Mars", "Aarde", "Saturnus", "Pluto", "Neptunus", "Venus"];
 });*/
 
-Route::get('/planets/{planet?}', function ($planet = null) {
+/*Route::get('/planets/{planet?}', function ($planet = null) {
     $planets = [
         [
             'name' => 'Mars',
@@ -45,18 +45,21 @@ Route::get('/planets/{planet?}', function ($planet = null) {
         ],
     ];
 
-    // Filter the planets array if a planet is specified
+    
     if ($planet) {
         $planets = collect($planets)->filter(function ($p) use ($planet) {
             return strtolower($p['name']) == strtolower($planet);
         })->values()->all();
     }
 
-    // Debugging information to check contents of $planets
+    
     if (empty($planets)) {
         dd('No planets found', $planets, $planet);
     }
 
     return view('planets', compact('planets', 'planet' ));
-});
+});*/
 
+
+Route::get('/planets', [PlanetController::class, 'index']);
+Route::get('/planets/{planet}', [PlanetController::class, 'show']);
